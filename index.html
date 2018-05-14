@@ -8,17 +8,32 @@
 </head>
 <body>
     <div id="root">
-            <input type="text" name="" id="input" v-model="message">
-            <p>The value of the input is {{message}} </p>
+    <ul>
+      <li v-for="name in names" v-text="name"></li>
+    </ul>
+    <input type="text" name="" id="input">
+    <button id="button">Add Name</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
-        new Vue({
+      var app =  new Vue({
             el : "#root",
             data: {
-            message : "Hello World"
+                names : ['Jack','Jill','Tom','Harry']
+        },
+        mounted(){
+             //Wrong way or old way. NOT A DATAcentric approach
+        document.querySelector("#button").addEventListener(
+           'click',() => {
+            let name = document.querySelector("#input");
+            app.names.push(name.value);
+           name.value = '';
+            
+           }
+        );
         }
-        })
+        });
+       
     </script>
 </body>
 </html>
