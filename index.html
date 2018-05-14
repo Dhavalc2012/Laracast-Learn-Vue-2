@@ -5,27 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Vue JS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    .is-loading {
+        background: red;
+    }
+    </style>
 </head>
 <body>
     <div id="root">
-    <ul>
-      <li v-for="name in names" v-text="name" ></li>
-    </ul>
-    <input type="text" name="" id="input" v-model="newName">
-    <button @click="addName">Add Name</button>
+    <button :title="title">Hover Over Me</button>
+    <button :class="{ 'is-loading' : isLoading }" @click="toggleClass">Click Me </button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
       var app =  new Vue({
             el : "#root",
             data: {
-                newName : '',
-                names : ['Jack','Jill','Tom','Harry']
+              title : "Title is set through javascript",
+              isLoading: false,
         },
         methods:{
-            addName(){
-                this.names.push(this.newName);
-                this.newName = "";
+            toggleClass(){
+                
+                return  this.isLoading = !this.isLoading ;
             }
         },
         });
