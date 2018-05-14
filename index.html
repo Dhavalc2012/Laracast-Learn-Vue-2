@@ -13,37 +13,11 @@
 </head>
 <body>
     <div id="root">
-        <h1>All Task</h1>
-        <ul>
-            <li v-for="task in tasks" v-text="task.description"></li>
-        </ul>
-
-
-        <h1>Incomplete Task</h1>
-        <ul>
-            <li v-for="task in incompleteTasks" v-text="task.description"></li>
-        </ul>
+       <task>Go to the work</task>
+       <task>Change the website</task>
+       <task>Make Website Live</task>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script>
-      var app =  new Vue({
-            el : "#root",
-            data: {
-              tasks : [
-                  {description : 'Go to the store' , completed : true},
-                  {description : 'Buy Clothes' , completed : false},
-                  {description : 'Build New Website' , completed : false},
-                  {description : 'Add New Feature' , completed : false},
-                  {description : 'Update the task list' , completed : true},
-              ],
-        },
-       computed: {
-           incompleteTasks(){
-               return this.tasks.filter(task => !task.completed);
-           }
-       },
-        });
-       
-    </script>
+  <script src="main.js"></script>
 </body>
 </html>
