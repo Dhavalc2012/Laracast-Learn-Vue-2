@@ -9,17 +9,8 @@
 </head>
 <body>
     <div id="root" class="container">
-        <tabs>
-            <tab name="About Us" :selected="true">
-                <h1>Here is the content for about us</h1>
-            </tab>
-            <tab name="Our History">
-                    <h1>Here is the content for our history</h1>
-                </tab>
-                <tab name="Our Vision">
-                        <h1>Here is the content for our vision</h1>
-                    </tab>
-        </tabs>
+       <coupon v-on:applied="onCouponApplied"></coupon>
+       <div v-show="couponApplied">Coupon is Applied</div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="main.js"></script>
