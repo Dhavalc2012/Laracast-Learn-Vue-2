@@ -39,28 +39,43 @@ class Form {
     this.errors = new Errors();
   }
   data() {
-      let data = Object.assign({},this);
-      delete data.orignalData;
-      delete data.errors;
+    let data = {};
+
+for(let property in this.orignalData){
+    data[property] = this[property];
+}
+
+      // let data = Object.assign({},this);
+      // delete data.orignalData;
+      // delete data.errors;
       return data;
   }
   reset() {
     for (let field in this.orignalData) {
       this[field] = "";
     }
-  }
-  submit(requestType, url) {
-    axios[requestType](url, this.data())
-      .then(this.onSuccess.bind(this))
-      .catch(this.onFail.bind(this));
-  }
-  onSuccess(response) {
-    alert(response.data.message);
-    this.reset();
     this.errors.clear();
   }
-  onFail(error) {
-    this.errors.record(error.response.data);
+  submit(requestType, url) {
+    return new Promise((resolve,reject) => {
+      axios[requestType](url, this.data())
+      .then(response => {
+        this.onSuccess(response.data);
+        resolve(response.data);
+      })
+      .catch(error => {
+        this.onFail(error.response.data);
+        reject(error.response.data);
+      })
+    });
+   
+  }
+  onSuccess(data) {
+    alert(data.message);
+    this.reset();
+  }
+  onFail(errors) {
+    this.errors.record(errors);
   }
 }
 
@@ -74,11 +89,9 @@ new Vue({
   },
   methods: {
     onSubmit() {
-      this.form.submit("post", "/projects");
+      this.form.submit("post", "/projects")
+      .then(data => alert('Handling It!'))
+      .catch(error =>console.log(error));
     },
-    onSuccess(response) {
-      alert(response.data.message);
-      form.reset();
-    }
   }
 });
