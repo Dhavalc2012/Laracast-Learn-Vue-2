@@ -14,6 +14,7 @@
 </head>
 <body>
     <div id="app">
+        <Example></Example>
     <div  class="container">
             @foreach ($projects as $project)
             <p>{{ $project->name }}</p>
@@ -41,8 +42,8 @@
 </form>  
 
 </div>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-       <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="/js/vendor.js"></script>
+
        <script src="/js/app.js"></script>
   
 </body>
