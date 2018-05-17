@@ -7,7 +7,7 @@
             <div class="col-sm-12">
                <div class="col-sm-12" v-for="status in statuses">
                     {{ status.user.name }}
-                   {{ postedOn(status) }}
+                   {{ status.created_at | ago }}
                     <div v-text="status.body"></div>
                </div>
             </div>
@@ -24,13 +24,13 @@ import Status from '../models/Status'
                 statuses :[],
             }
         },
+        filters : {
+            ago(date){
+                return moment(date).fromNow();
+            }
+        },
         created(){
            Status.all(statuses => this.statuses = statuses)
-        },
-        methods :{
-            postedOn(status){
-                return moment(status.created_at).fromNow();
-            }
         }
     }
 </script>
