@@ -5,32 +5,21 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
- import Vue from 'vue';
-Vue.component('coupon',{
-  props:['code'],
-  model: {
-    prop: 'code',
-    event: 'input'
-    },
-  template :`
-  <input type="text" :value="code" @input="updateCode($event.target.value)" ref="input">
-  `,
-  methods : {
-    updateCode(code){
-      if(code === "ALLFREE"){
-        alert('This coupon is no longer valid sorry');
-        this.$refs.input.value = code = "";
-      }
-      this.$emit('input',code);
-    }
-  }
-});
 
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import axios from 'axios';
+import router from './routes';
+
+window.Vue = Vue;
+Vue.use(VueRouter);
+ window.axios = axios;
+
+ window.axios.defaults.headers.common = {
+   'X-Requested-With' : 'XMLHttpRequest'
+ };
 
 new Vue({
-  el : "#app",
-  data:{
-    coupon : 'FREEBIE'
-  }
-  }
-);
+   el : "#app",
+   router
+ });
