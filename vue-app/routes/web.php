@@ -1,5 +1,5 @@
 <?php
-
+use App\Status;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,11 @@
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+
+Route::get('/statuses', function () {
+    return App\Status::with('user')->latest()->get();
 });
 
 // Route::get('projects/create','ProjectController@create');
