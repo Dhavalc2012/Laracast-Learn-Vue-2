@@ -114,18 +114,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  */
 
 
-var source = {
-  user: {
-    name: 'John Doe'
-  } };
-new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-  el: "#one",
-  data: source
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('coupon', {
+  props: ['code'],
+  model: {
+    prop: 'code',
+    event: 'input'
+  },
+  template: '\n  <input type="text" :value="code" @input="updateCode($event.target.value)" ref="input">\n  ',
+  methods: {
+    updateCode: function updateCode(code) {
+      if (code === "ALLFREE") {
+        alert('This coupon is no longer valid sorry');
+        this.$refs.input.value = code = "";
+      }
+      this.$emit('input', code);
+    }
+  }
 });
 
 new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-  el: "#two",
-  data: source
+  el: "#app",
+  data: {
+    coupon: 'FREEBIE'
+  }
 });
 
 /***/ }),

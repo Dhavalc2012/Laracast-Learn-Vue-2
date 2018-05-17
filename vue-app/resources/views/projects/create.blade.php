@@ -13,18 +13,10 @@
     <title>Document</title>
 </head>
 <body>
-   <div id="one">
-       <h1>
-       @{{ user.name }}           
-       </h1>
-   </div>
-
-
-   <div id="two">
-        <h1>
-        @{{ user.name }}           
-        </h1>
-    </div>
+<div id="app">
+    <!-- <input type="text" :value="coupon" @input="coupon = $event.target.value"> -->
+    <coupon v-model="coupon"></coupon>
+</div>
 
 
        <script src="/js/app.js"></script>
